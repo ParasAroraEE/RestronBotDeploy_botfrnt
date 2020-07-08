@@ -1,0 +1,255 @@
+session_config:
+  session_expiration_time: 30
+  carry_over_slots_to_new_session: false
+intents:
+- greet
+- searchRestaurant
+- inform_cuisine
+- food_veg
+- food_nonveg
+- food_bread
+- food_desert
+- changeCuisine
+- show_more
+- rooti
+- sweet
+- vegitem
+- nonvegitem
+- booking_enquiry
+- name
+- email_id
+- table
+- table_date
+- ref_no
+- cancel_booking
+- confirm_cancel
+- starter
+- main_course
+- hunger
+- starter_item
+- order_continue
+entities:
+- veg
+- non_veg
+- bread
+- desserts
+- cuisine
+- PERSON
+- email
+- table
+- tdate
+- refno
+- cancl
+- starters
+- contorder
+slots:
+  PERSON:
+    type: unfeaturized
+  bread:
+    type: unfeaturized
+  cancl:
+    type: unfeaturized
+  contorder:
+    type: unfeaturized
+  cuisine:
+    type: list
+  desserts:
+    type: unfeaturized
+  email:
+    type: unfeaturized
+  non_veg:
+    type: unfeaturized
+  refno:
+    type: unfeaturized
+  starters:
+    type: list
+  table:
+    type: float
+    max_value: 1.0
+    min_value: 0.0
+  tdate:
+    type: unfeaturized
+  veg:
+    type: unfeaturized
+responses:
+  utter_greet_user:
+  - text: Hello Foodie! How may I  help you today? 😃
+    buttons:
+    - payload: '/hunger'
+      title: Order Food
+    - payload: '/booking_enquiry'
+      title: Book Table
+    - payload: '/cancel_booking'
+      title: Cancel Booking
+
+  utter_cuisine:
+  - text: What cuisine you would like to have?
+  - text: What cuisine do you feel like eating today?
+  - text: Which cuisine do you wish to eat today?
+  - text: Tell me the cuisine you wish to eat.
+  - text: In mood for which fancy cuisine?
+  utter_confirmcancel:
+  - buttons:
+    - payload: '/confirm_cancel{"cancl": "positive"}'
+      title: Yes
+    - payload: '/confirm_cancel{"cancl": "negative"}'
+      title: No
+    text: Are you sure you want to cancel booking
+  utter_wrong_tdate:
+  - text: Kindly provide correct date
+  utter_ask_tdate:
+  - text: Kindly provide date of Booking(yyyy-mm-dd)
+  utter_tellstatusnumber:
+  - text: Kindly provide your 6 digit reference number
+  utter_food_veg:
+  - buttons:
+    - payload: '/vegitem{"cuisine": ["Masala Channa",100]}'
+      title: Masala Channa
+    - payload: '/vegitem{"cuisine": ["Paneer",100]}'
+      title: Paneer
+    - payload: '/vegitem{"cuisine": ["Mushroom Kofta",100]}'
+      title: Mushroom Kofta
+    - payload: '/vegitem{"cuisine": ["Matar Paneer",100]}'
+      title: Matar Paneer
+    - payload: '/vegitem{"cuisine": ["Gobhi Aloo",100]}'
+      title: Gobhi Aloo
+    image: https://smedia2.intoday.in/aajtak/images/stories/072015/shahi_paneer_pakwan_520_070215081153.jpg
+    text: Masala Channa, Paneer, Mushroom Kofta,Matar Paneer, Gobhi Aloo
+  utter_food_nonveg:
+  - buttons:
+    - payload: '/nonvegitem{"cuisine": ["Grilled Chicken",100]}'
+      title: Grilled Chicken
+    - payload: '/nonvegitem{"cuisine": ["Mutton Korma",100]}'
+      title: Mutton Korma
+    - payload: '/nonvegitem{"cuisine": ["Pina Colada Pork Ribs",100]}'
+      title: Pina Colada Pork Ribs
+    - payload: '/nonvegitem{"cuisine": ["Tandoori Lamb Chops",100]}'
+      title: Tandoori Lamb Chops
+    - payload: '/nonvegitem{"cuisine": ["Malabar Fish Biryani",100]}'
+      title: Malabar Fish Biryani
+    - payload: '/nonvegitem{"cuisine": ["Butter Chicken",100]}'
+      title: Butter Chicken
+    image: https://www.jocooks.com/wp-content/uploads/2019/06/roast-chicken-1.jpg
+    text: Grilled Chicken,Mutton Korma,Pina Colada Pork Ribs,Tandoori Lamb Chops,
+      Malabar Fish Biryani, Butter Chicken
+  utter_starter_item:
+  - buttons:
+    - payload: '/starter_item{"starters": ["Soup",100]}'
+      title: Soup
+    - payload: '/starter_item{"starters": ["Paneer Tikkas",100]}'
+      title: Paneer Tikkas
+    - payload: '/starter_item{"starters": ["Chicken Wings",100]}'
+      title: Chicken Wings
+    image: https://i.ndtvimg.com/i/2015-07/paneer-tikka-625_625x350_81436947019.jpg
+    text: Paneer Tikkas,Chicken Wings,Soup
+  utter_food_bread:
+  - buttons:
+    - payload: '/rooti{"cuisine": ["Naan",100]}'
+      title: Naan
+    - payload: '/roti{"cuisine": ["Aloo Paratha",100]}'
+      title: Aloo Paratha
+    - payload: '/rooti{"cuisine": ["Malabar Paratha",100]}'
+      title: Malabar Paratha
+    - payload: '/rooti{"cuisine": ["Poori",100]}'
+      title: Poori
+    - payload: '/rooti{"cuisine": ["Makki ki Roti",100]}'
+      title: Makki ki Roti
+    - payload: '/rooti{"cuisine": ["Amritsari Kulcha",100]}'
+      title: Amritsari Kulcha
+    - payload: '/rooti{"cuisine": ["Roomali Roti",100]}'
+      title: Roomali Roti
+    image: https://b.zmtcdn.com/data/pictures/0/18667620/9fa809ab62b6c3d8fd480800c0812b61.jpg
+    text: Naan,Aloo Paratha, Malabar Paratha,Poori, Makki ki Roti, Amritsari Kulcha,
+      Roomali Roti
+  utter_food_desert:
+  - buttons:
+    - payload: '/sweet{"cuisine": ["Gulab Jamun",100]}'
+      title: Gulab Jamun
+    - payload: '/sweet{"cuisine": ["Gajar Ka Halwa",100]}'
+      title: Gajar Ka Halwa
+    - payload: '/sweet{"cuisine": ["Sandesh",100]}'
+      title: Sandesh
+    - payload: '/sweet{"cuisine": ["Kaju ki Barfi",100]}'
+      title: Kaju ki Barfi
+    - payload: '/sweet{"cuisine": ["Kulfi",100]}'
+      title: Kulfi
+    image: https://i.ndtvimg.com/i/2017-03/kulfi_620x350_51490945811.jpg
+    text: Gulab Jamun, Gajar Ka Halwa, Sandesh,Kaju ki Barfi, Kulfi
+  utter_food_question:
+  - buttons:
+    - payload: '/starter'
+      title: Starter
+    - payload: '/main_course'
+      title: Main Course
+    text: What would you prefer
+  utter_food_type:
+  - buttons:
+    - payload: '/food_veg{"veg": "veg"}'
+      title: veg
+    - payload: '/food_nonveg{"non_veg": "non_veg"}'
+      title: non_veg
+    - payload: '/food_bread{"bread": "bread"}'
+      title: bread
+    - payload: '/food_desert{"desserts": "desserts"}'
+      title: desserts
+    text: What would you like to have
+  utter_anythingelse:
+  - buttons:
+    - payload: '/order_continue{"contorder": "more order"}'
+      title: Yes
+    - payload: '/order_continue{"contorder": "no more"}'
+      title: No
+    text: Is there any thing else sir?
+  utter_order_thanks:
+  - text: Thanks for your order. We will get your order shortly
+  utter_cuisine_change:
+  - text: Sure, I have changed your cuisine to {cuisine}.
+  utter_default_fallback:
+  - text: Sorry I am unable to process your response
+  - text: I apologize for the inconvenience. I am unable to process your response.
+  - text: Sorry, I think there has been some problem and I was unable to process your
+      request.
+  - text: I apologize for the inconvenience. I could not process your request.
+  utter_askname:
+  - text: Before we Begin Let me know your name?
+  utter_askemail:
+  - text: And your email id please?
+  utter_asktable_no:
+  - text: Tell table number you would like to book
+actions:
+- respond_chitchat
+- utter_cuisine
+- utter_cuisine_change
+- utter_default_fallback
+- action_save_veg
+- action_save_cuisine
+- action_save_nonveg
+- action_save_bread
+- action_save_desserts
+- utter_askname
+- action_save_name
+- utter_askemail
+- action_save_email
+- utter_asktable_no
+- action_availabe_table
+- action_save_table
+- action_greet_user
+- action_check_booking
+- action_cancel_booking
+- utter_tellstatusnumber
+- utter_confirmcancel
+- utter_starter_item
+- utter_food_question
+- action_start_entry
+- action_starter_entry
+- action_check_more_order
+- utter_greet_user
+- utter_wrong_tdate
+- utter_ask_tdate
+- utter_food_veg
+- utter_food_nonveg
+- utter_food_bread
+- utter_food_desert
+- utter_food_type
+- utter_anythingelse
+- utter_order_thanks
